@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 puts "cleaning data base...."
 Restaurant.destroy_all
+Review.destroy_all
 
 puts "Creating restaurants...."
 100.times do
@@ -14,9 +15,18 @@ puts "Creating restaurants...."
     name: Faker::Restaurant.name,
     address: Faker::Address.street_address,
     phone_number: Faker::PhoneNumber.cell_phone,
-    category: Faker::Restaurant.type
+    category: ["chinese", "italian", "japanese", "french", "belgian"].sample
   )
   puts "restaurant with id: #{restaurant.id} has benn created!"
 end
+
+# 100.times do
+#   review = Review.create(
+#     content: Faker::Restaurant.review,
+#     rating: rand(1..5),
+#     restaurant: restaurant
+#   )
+#   puts "review with id: #{review.id} has benn created!"
+# end
 
 puts "Created!"
