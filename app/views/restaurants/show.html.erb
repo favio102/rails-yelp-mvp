@@ -1,27 +1,46 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Restaurants</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <%= link_to "Home", restaurants_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant), class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%# <a class="nav-link disabled">Disabled</a> %>
+          <%= button_to "Remove this restaurant", @restaurant, method: :delete, class: "nav-link text-danger" %>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<hr>
 <div class="container">
   <p style="color: green"><%= notice %></p>
+    <%= render @restaurant %>
+  <p><strong>Reviews</strong></p>
+  <p> <%= link_to "Add new review", new_restaurant_review_path(@restaurant) %> </p>
 
-  <%= render @restaurant %>
-
-<p><strong>Reviews</strong></p>
-<p> <%= link_to "Add new review", new_restaurant_review_path(@restaurant) %> </p>
-<ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li class="list-group-item"> User review: <%= review.content %></li>
-    <li class="list-group-item"> Rating: <%= "⭐️" * review.rating %></li>
-    <li class="list-group-item"> <%= link_to "Delete",
-    review_path(review),
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-  %> </li>
-  <% end %>
-
-</ul>
-<hr>
-
-  <div>
-    <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
-    <%= link_to "Back to restaurants", restaurants_path %>
-
-    <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
-  </div>
+  <ul class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <hr>
+      <li class="list-group-item"> User review: <%= review.content %></li>
+      <li class="list-group-item"> Rating: <%= "⭐️" * review.rating %></li>
+      <li class="list-group-item"> <%= link_to "Delete review", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-danger"%> </li>
+    <hr>
+    <% end %>
+  </ul>
+  <hr>
 </div>

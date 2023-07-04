@@ -1,17 +1,46 @@
-<div class="container">
-  <p style="color: green"><%= notice %></p>
-
-  <h1>Restaurants</h1>
-
-  <div id="restaurants">
-    <% @restaurants.each do |restaurant| %>
-      <%= render restaurant %>
-      <p>
-        <%= link_to "Show this restaurant", restaurant %>
-      </p>
-    <% end %>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Restaurants</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Add a new restaurant", new_restaurant_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%# <a class="nav-link disabled">Disabled</a> %>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
   </div>
+</nav>
 
-  <%= link_to "New restaurant", new_restaurant_path %>
 
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col">
+        <div class="container mb-3">
+          <p style="color: green"><%= notice %></p>
+          <div class="card border-primary mb-3" style="width: 18rem;" id="restaurants">
+            <div class="card-body">
+              <% @restaurants.each do |restaurant| %>
+                <%= render restaurant %>
+                <%= link_to "Show this restaurant", restaurant, class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
