@@ -8,6 +8,8 @@
   <div>
     <%= link_to "Show this restaurant", @restaurant %> |
     <%= link_to "Back to restaurants", restaurants_path %>
+    <%= link_to "Back to restaurant #{@restaurant.name}",   restaurant_path(@restaurant) %>
   </div>
+
 
 </div>
