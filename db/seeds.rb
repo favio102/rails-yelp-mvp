@@ -10,12 +10,12 @@ Restaurant.destroy_all
 Review.destroy_all
 
 puts "Creating restaurants...."
-100.times do
+10.times do
   restaurant = Restaurant.create(
     name: Faker::Restaurant.name,
     address: Faker::Address.street_address,
     phone_number: Faker::PhoneNumber.cell_phone,
-    category: ["chinese", "italian", "japanese", "french", "belgian"].sample
+    category: Restaurant::CATEGORIES.sample
   )
   puts "restaurant with id: #{restaurant.id} has benn created!"
 end
