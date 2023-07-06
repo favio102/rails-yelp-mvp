@@ -4,5 +4,5 @@ class Restaurant < ApplicationRecord
   has_many :reviews, dependent: :destroy
   validates :name, :address, :category, presence: true
   validates :category, inclusion: { in: CATEGORIES }
-  validates :phone_number, length: { is: 5 }, numericality: { only_integer: true }
+  validates :phone_number, length: { in: 5..10 }, numericality: { only_integer: true }
 end
